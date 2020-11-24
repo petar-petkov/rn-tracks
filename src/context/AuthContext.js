@@ -25,11 +25,11 @@ const signup = (dispatch) => {
       
       // Store token
       await AsyncStorage.setItem('token', response.data.tokens.access);
-      
+
       // Update state with our token
       dispatch({ type: 'signup', payload: response.data.tokens.access });
 
-      // Use the navigator function we made which changes the state of the navigator
+      // Use the navigator function (navigationRef.js) we made which changes the state of the navigator
       // to the different flow, this also gives us access to the navigator so that
       // it could be called here
       navigate('TrackList');
