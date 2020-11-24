@@ -19,8 +19,8 @@ const switchNavigator = createSwitchNavigator({
   // We could also use initial route, but not needed here
   splash: SplashScreen,
   loginFlow: createStackNavigator({
-    Signup: SigninScreen,
-    Signin: SignupScreen
+    Signin: SigninScreen,
+    Signup: SignupScreen
   }),
   mainFlow: createBottomTabNavigator({
     trackListFlow: createStackNavigator({
