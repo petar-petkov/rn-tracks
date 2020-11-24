@@ -19,6 +19,17 @@ const authReducer = (state, action) => {
   }
 };
 
+const tryLocalSignin = dispatch => async () => {
+  const token = await AsyncStorage.getItem('token');
+  if (token) {
+    dispatch({ type: 'signin', payload: token })
+    navigate('TrackList');
+  } else {
+    navigate('loginFlow');
+  }
+}
+
+
 const clearErrorMessage = dispatch => () => {
   dispatch({ type: 'clear_error', })
 };
@@ -75,13 +86,19 @@ const signout = () => {
     // update state
 
   }
-}
+};
 
 export const { Provider, Context } = createDataContext(
   // Well reducer...
   authReducer,
   //Actions
-  { signup, signin, signout, clearErrorMessage },
+  {
+    signup,
+    signin,
+    signout, 
+    clearErrorMessage,
+    tryLocalSignin
+  },
   // Default state value
   { token: null, errorMessage: '' }
 )
