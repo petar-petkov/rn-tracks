@@ -1,5 +1,5 @@
 import '../_mockLocation';
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { SafeAreaView, withNavigationFocus } from 'react-navigation';
@@ -9,8 +9,15 @@ import useLocation from '../hooks/useLocation';
 import TrackForm from '../components/TrackForm';
 
 const TrackCreateScreen = ({ isFocused }) => {
-  const { addLocation } = useContext(LocationContext);
-  const [err] = useLocation(isFocused, addLocation);
+  const { state, addLocation } = useContext(LocationContext);
+
+  // This makes sure we return a different callback only if the value
+  // in our array/state changes in this case only if our recording state
+  // gets changed
+  const callback = useCallback((location) => {
+    addLocation(location, state.recording);
+  }, [state.recording]);
+  const [err] = useLocation(isFocused, callback);
   
   return (
     <SafeAreaView forceInset={{ top: 'always' }}>
