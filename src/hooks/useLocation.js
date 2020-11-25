@@ -41,10 +41,18 @@ export default (shouldTrack, callback) => {
     if (shouldTrack) {
       startWatching();
     } else {
-      // Delete the subscriber
-      subscriber.remove();
-      // Also reset state
-      setSubscriber(null);
+      // Since we pass should track on each reload of the app
+      // not catching this causes a crash, so for now let's
+      // just catch it and ignore it
+      try {
+        // Delete the subscriber
+        subscriber.remove();
+        // Also reset state
+        setSubscriber(null);
+      } catch (e) {
+        {}
+      }
+
     }
   // We want to re-render everything should track value changes
   }, [shouldTrack]);
