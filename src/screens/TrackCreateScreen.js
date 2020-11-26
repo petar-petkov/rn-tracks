@@ -9,15 +9,18 @@ import useLocation from '../hooks/useLocation';
 import TrackForm from '../components/TrackForm';
 
 const TrackCreateScreen = ({ isFocused }) => {
-  const { state, addLocation } = useContext(LocationContext);
+  const { state: { recording }, addLocation } = useContext(LocationContext);
 
   // This makes sure we return a different callback only if the value
   // in our array/state changes in this case only if our recording state
   // gets changed
   const callback = useCallback((location) => {
-    addLocation(location, state.recording);
-  }, [state.recording]);
-  const [err] = useLocation(isFocused, callback);
+    console.log(location)
+    addLocation(location, recording);
+  }, [recording]);
+  // We want to update our location if we are either on the map screen
+  // or if recording has been started no matter where we are in the app
+  const [err] = useLocation(isFocused || recording, callback);
   
   return (
     <SafeAreaView forceInset={{ top: 'always' }}>
