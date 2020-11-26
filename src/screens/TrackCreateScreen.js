@@ -15,7 +15,6 @@ const TrackCreateScreen = ({ isFocused }) => {
   // in our array/state changes in this case only if our recording state
   // gets changed
   const callback = useCallback((location) => {
-    console.log(location)
     addLocation(location, recording);
   }, [recording]);
   // We want to update our location if we are either on the map screen
