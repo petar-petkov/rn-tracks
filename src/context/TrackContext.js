@@ -10,9 +10,8 @@ const trackReducer = (state, action) => {
 
 const fetchTracks = dispatch => () => {};
 const createTrack = dispatch => async (trackName, locations) => {
-  // Hardcoded user for testing purposes
+  // Hardcoded user for testing purposes, don't forget to remove it ...
   const trackResponse = await trackerApi.post('/tracks/', { trackName, user: 1 })
-  console.log(trackResponse.data)
   const trackId = trackResponse.data.id
   
   // Didn't want to redo the backend api for this sooo it's a bit of a bad design
@@ -23,9 +22,6 @@ const createTrack = dispatch => async (trackName, locations) => {
       coords: location.coords
     })
   });
-
-
-  //console.log(pointResponse.data)
 };
 
 export const { Provider, Context } = createDataContext(
