@@ -14,10 +14,13 @@ const TrackListScreen = ({ navigation }) => {
       <Text style={{ fontSize:48 }}>TrackListScreen</Text>
       <FlatList
         data={state}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={
+                () => navigation.navigate('TrackDetail', { id: item.id })
+              }
+            >
               <ListItem chevron={true} title={item.trackName} />
             </TouchableOpacity>
           )
