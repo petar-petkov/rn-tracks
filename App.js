@@ -14,6 +14,9 @@ import { setNavigator } from './src/navigationRef';
 import SplashScreen from './src/screens/SplashScreen';
 import { Provider as LocationProvider } from './src/context/LocationContext';
 import { Provider as TrackProvider } from './src/context/TrackContext';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['ListItem.chevron', 'ListItem.title']);
 
 const switchNavigator = createSwitchNavigator({
   // We could also use initial route, but not needed here
