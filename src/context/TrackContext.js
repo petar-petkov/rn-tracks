@@ -5,6 +5,8 @@ const trackReducer = (state, action) => {
   switch (action.type) {
     case 'fetch_tracks':
       return action.payload;
+    case 'fetch_points':
+      return action.payload;
     default:
       return state;
   };
@@ -13,6 +15,11 @@ const trackReducer = (state, action) => {
 const fetchTracks = dispatch => async () => {
   const response = await trackerApi.get('/tracks/');
   dispatch({ type: 'fetch_tracks', payload: response.data })
+};
+
+const fetchCoords = dispatch => async (trackId) => {
+  const response = await trackerApi.get('/points/', { track: trackId });
+  dispatch({ type: 'fetch_points', payload: response.data })
 };
 
 const createTrack = dispatch => async (trackName, locations) => {
