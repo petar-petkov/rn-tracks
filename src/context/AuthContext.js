@@ -92,7 +92,7 @@ const signout =  (dispatch) => {
 export const { Provider, Context } = createDataContext(
   // Well reducer...
   authReducer,
-  //Actions
+  // Actions
   {
     signup,
     signin,

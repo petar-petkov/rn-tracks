@@ -1,4 +1,4 @@
-//import '../_mockLocation';
+import '../_mockLocation';
 import React, { useContext, useCallback } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
@@ -13,7 +13,9 @@ const TrackCreateScreen = ({ isFocused }) => {
 
   // This makes sure we return a different callback only if the value
   // in our array/state changes in this case only if our recording state
-  // gets changed
+  // gets changed, otherwise each memory change which happens to our
+  // function would be detected as change not just array changes, which
+  // could lead to let's say tons of changes to our function
   const callback = useCallback((location) => {
     addLocation(location, recording);
   }, [recording]);
