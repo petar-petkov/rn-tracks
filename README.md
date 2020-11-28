@@ -3,7 +3,7 @@ Django + React Native app example
 
 This is an example [Django](https://www.djangoproject.com/) backend & [React Native](https://facebook.github.io/react-native/) client for tracking a path on a map (react-native-maps) and saving the track.
 
-// TODO: Add some screenshots and additional description for the app
+To run this successfully you will also need the Django REST app I built for it as well. I will add the link here. 
 
 ## Setup
 
